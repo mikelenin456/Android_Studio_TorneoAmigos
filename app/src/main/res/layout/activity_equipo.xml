@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F4F7F4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar equipo"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#246847"
+            android:layout_marginBottom="20dp" />
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del equipo"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/etDelegado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del delegado"
+            android:inputType="textCapWords"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categoría"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp" />
+
+        <Spinner
+            android:id="@+id/spCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <CheckBox
+            android:id="@+id/cbConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmo los datos del equipo"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnValidarEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:text="Validar formulario"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/btnVolverEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:text="Volver"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+</ScrollView>

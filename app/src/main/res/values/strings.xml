@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TorneosAmigos</string>
+    <string name="titulo_inicio">TORNEOS AMIGOS </string>
+    <string name="descripcion_inicio">Organiza tu torneo de fútbol amateur</string>
+    <string name="btn_equipo">Formulario de equipo</string>
+    <string name="btn_partido">Formulario de partido</string>
+    <string name="btn_lista">Ver equipos de ejemplo</string>
+</resources>
