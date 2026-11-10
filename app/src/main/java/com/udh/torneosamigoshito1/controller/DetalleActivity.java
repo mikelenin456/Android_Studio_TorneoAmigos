@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.udh.torneosamigoshito1.R;
 
+import android.widget.TextView;
+
 public class DetalleActivity extends AppCompatActivity {
 
     @Override
@@ -17,6 +19,15 @@ public class DetalleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detalle);
+
+        TextView nombre = findViewById(R.id.tvNombreDetalle);
+        TextView categoria = findViewById(R.id.tvCategoriaDetalle);
+        TextView delegado = findViewById(R.id.tvDelegadoDetalle);
+
+        nombre.setText(getIntent().getStringExtra("nombre"));
+        categoria.setText(getIntent().getStringExtra("categoria"));
+        delegado.setText(getIntent().getStringExtra("delegado"));
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

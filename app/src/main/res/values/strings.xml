@@ -5,4 +5,17 @@
     <string name="btn_equipo">Formulario de equipo</string>
     <string name="btn_partido">Formulario de partido</string>
     <string name="btn_lista">Ver equipos de ejemplo</string>
+    <string name="equipo_titulo">Registrar equipo</string>
+    <string name="nombre_equipo">Nombre del equipo</string>
+    <string name="nombre_delegado">Nombre del delegado</string>
+    <string name="categoria_equipo">Categoría</string>
+    <string name="confirmar_equipo">Confirmo los datos del equipo</string>
+    <string name="validar_formulario">Validar formulario</string>
+    <string name="volver">Volver</string>
+    <string name="partido_titulo">Programar partido</string>
+    <string name="equipo_local">Equipo local</string>
+    <string name="equipo_visitante">Equipo visitante</string>
+    <string name="cancha_lugar">Cancha o lugar</string>
+    <string name="fecha_hora_partido">Fecha y hora: 10/11/2026 15:00</string>
+    <string name="partido_amistoso">Partido amistoso</string>
 </resources>

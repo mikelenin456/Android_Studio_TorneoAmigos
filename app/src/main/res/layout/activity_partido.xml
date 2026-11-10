@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Programar partido"
+            android:text="@string/partido_titulo"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#246847"
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Equipo local"
+            android:text="@string/equipo_local"
             android:textSize="18sp" />
 
         <Spinner
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Equipo visitante"
+            android:text="@string/equipo_visitante"
             android:textSize="18sp"
             android:layout_marginTop="12dp" />
 
@@ -48,7 +48,8 @@
             android:id="@+id/etCancha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cancha o lugar"
+            android:minHeight="48dp"
+            android:hint="@string/cancha_lugar"
             android:inputType="textCapWords"
             android:layout_marginTop="16dp" />
 
@@ -56,7 +57,8 @@
             android:id="@+id/etFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha y hora: 10/11/2026 15:00"
+            android:minHeight="48dp"
+            android:hint="@string/fecha_hora_partido"
             android:inputType="text"
             android:layout_marginTop="12dp" />
 
@@ -64,21 +66,21 @@
             android:id="@+id/swAmistoso"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Partido amistoso"
+            android:text="@string/partido_amistoso"
             android:layout_marginTop="16dp" />
 
         <Button
             android:id="@+id/btnValidarPartido"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:text="Validar formulario"
+            android:text="@string/validar_formulario"
             android:layout_marginTop="20dp" />
 
         <Button
             android:id="@+id/btnVolverPartido"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:text="Volver"
+            android:text="@string/volver"
             android:layout_marginTop="12dp" />
 
     </LinearLayout>
