@@ -14,6 +14,8 @@ import com.udh.torneosamigoshito1.model.EquiposEjemplo;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AlertDialog;
+
 public class PartidoActivity extends AppCompatActivity {
 
     @Override
@@ -69,12 +71,16 @@ public class PartidoActivity extends AppCompatActivity {
                 ).show();
                 return;
             }
+            String resumen = "Local: " + local.getSelectedItem()
+                    + "\nVisitante: " + visita.getSelectedItem()
+                    + "\nCancha: " + cancha.getText().toString().trim()
+                    + "\nFecha y hora: " + fecha.getText().toString().trim();
 
-            Toast.makeText(
-                    this,
-                    "Formulario validado correctamente",
-                    Toast.LENGTH_LONG
-            ).show();
+            new AlertDialog.Builder(PartidoActivity.this)
+                    .setTitle("Resumen del partido")
+                    .setMessage(resumen)
+                    .setPositiveButton("Aceptar", null)
+                    .show();
         });
 
         findViewById(R.id.btnVolverPartido).setOnClickListener(v -> {
