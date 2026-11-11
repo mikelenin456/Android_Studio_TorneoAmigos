@@ -68,3 +68,15 @@ Abre el proyecto en Android Studio y ejecútalo en el emulador. Desde el inicio 
 
 \[Ver la bitácora de desarrollo](BITACORA.md)
 
+
+## HITO 2
+
+### FORMULARIO DE PARTIDO CON SU VALIDACION Y RESUMEN
+
+En este avance se añadio un resumen al formulario de partido.
+El aplicativo muestra al equipo con sus respectivos campos en un dialogo, sin necesidad de guardar el partido donde para probar esto sera en formulario de partido llenado sus campos y esto
+"validara los formularios"
+
+-(BITACORA.md)
+-(evidencias/caputas_hito2/09_resumen_partido.png)
+-PLAN_DE_AVANCE.docx
