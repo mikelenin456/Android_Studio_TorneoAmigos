@@ -17,10 +17,6 @@ import com.udh.torneosamigoshito1.model.EquiposEjemplo;
 import com.udh.torneosamigoshito1.view.EquipoAdapter;
 
 import android.content.Intent;
-import com.udh.torneosamigoshito1.model.Equipo;
-import com.udh.torneosamigoshito1.model.EquiposGuardados;
-import java.util.ArrayList;
-
 
 public class ListaActivity extends AppCompatActivity {
 
@@ -32,9 +28,7 @@ public class ListaActivity extends AppCompatActivity {
 
         RecyclerView lista = findViewById(R.id.rvEquipos);
         lista.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<Equipo> equipos =EquiposEjemplo.obtener();
-        equipos.addAll(EquiposGuardados.obtener(this));
-        lista.setAdapter(new EquipoAdapter(equipos, equipo ->{
+        lista.setAdapter(new EquipoAdapter(EquiposEjemplo.obtener(), equipo -> {
             Intent intento = new Intent(this, DetalleActivity.class);
             intento.putExtra("nombre", equipo.getNombre());
             intento.putExtra("categoria", equipo.getCategoria());

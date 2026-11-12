@@ -10,8 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.udh.torneosamigoshito1.R;
-import com.udh.torneosamigoshito1.model.Equipo;
-import com.udh.torneosamigoshito1.model.EquiposGuardados;
 
 public class EquipoActivity extends AppCompatActivity {
 
@@ -62,15 +60,11 @@ public class EquipoActivity extends AppCompatActivity {
                 return;
             }
 
-            Equipo equipo = new Equipo(
-                    nombre.getText().toString().trim(),
-                    categoria.getSelectedItem().toString(),
-                    delegado.getText().toString().trim()
-            );
-            EquiposGuardados.guardar(this, equipo);
-            Toast.makeText(this, "Equipo guardado",
-                    Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(
+                    this,
+                    "Formulario validado correctamente",
+                    Toast.LENGTH_LONG
+            ).show();
         });
 
         findViewById(R.id.btnVolverEquipo).setOnClickListener(v -> {
