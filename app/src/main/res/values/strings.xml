@@ -4,7 +4,7 @@
     <string name="descripcion_inicio">Organiza tu torneo de fútbol amateur</string>
     <string name="btn_equipo">Formulario de equipo</string>
     <string name="btn_partido">Formulario de partido</string>
-    <string name="btn_lista">Ver equipos de ejemplo</string>
+    <string name="btn_lista">Ver equipos registrados</string>
     <string name="equipo_titulo">Registrar equipo</string>
     <string name="nombre_equipo">Nombre del equipo</string>
     <string name="nombre_delegado">Nombre del delegado</string>
@@ -18,4 +18,5 @@
     <string name="cancha_lugar">Cancha o lugar</string>
     <string name="fecha_hora_partido">Fecha y hora: 10/11/2026 15:00</string>
     <string name="partido_amistoso">Partido amistoso</string>
+    <string name="guardar_equipo">Guardar equipo</string>
 </resources>

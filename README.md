@@ -80,3 +80,21 @@ El aplicativo muestra al equipo con sus respectivos campos en un dialogo, sin ne
 -(BITACORA.md)
 -(evidencias/caputas_hito2/09_resumen_partido.png)
 -PLAN_DE_AVANCE.docx
+## Hito 3
+
+### Registro y consulta de equipos con Room
+
+Agregué Room al proyecto para guardar los equipos que se registran desde el formulario. Ahora se pueden consultar en **Ver equipos registrados** y aparecen como opciones para elegir al local y al visitante en **Programar partido**.
+
+Para probarlo, registra un equipo, marca la confirmación y pulsa **Guardar equipo**. Abre **Ver equipos registrados** para buscarlo. Luego cierra la app, vuelve a abrirla y entra otra vez a la lista para comprobar que el equipo sigue ahí.
+
+### Evidencias
+
+- [Formulario de registro de Amigos Michael](evidencias/capturas/capturas_hito3/12_formulario_amigos_michael.png)
+- [Equipos registrados en la app](evidencias/capturas/capturas_hito3/13_lista_equipos_registrados.png)
+- [Equipos disponibles en el formulario de partido](evidencias/capturas/capturas_hito3/14_equipos_registrados_en_partido.png)
+- [Gianca y Amigos Michael en la tabla equipos](evidencias/capturas/capturas_hito3/15_equipos_database_inspector.png)
+
+El registro y la consulta de equipos ya funcionan. Queda pendiente implementar la edición y eliminación de equipos, y el guardado y la consulta de partidos.
+
+[Plan de avance](PLAN_DE_AVANCE.docx) · [Bitácora de desarrollo](BITACORA.md)

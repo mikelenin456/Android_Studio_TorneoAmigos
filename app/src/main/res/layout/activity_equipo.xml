@@ -59,7 +59,7 @@
             android:id="@+id/btnValidarEquipo"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:text="@string/validar_formulario"
+            android:text="@string/guardar_equipo"
             android:layout_marginTop="20dp" />
 
         <Button
