@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.udh.torneosamigoshito1.R;
+import com.udh.torneosamigoshito1.model.AppDatabase;
+import com.udh.torneosamigoshito1.model.Equipo;
 
 public class EquipoActivity extends AppCompatActivity {
 
@@ -59,12 +61,31 @@ public class EquipoActivity extends AppCompatActivity {
                 ).show();
                 return;
             }
+            Equipo equipo = new Equipo(
+                    nombre.getText().toString().trim(),
+                    categoria.getSelectedItem().toString(),
+                    delegado.getText().toString().trim()
+            );
 
-            Toast.makeText(
-                    this,
-                    "Formulario validado correctamente",
-                    Toast.LENGTH_LONG
-            ).show();
+            v.setEnabled(false);
+
+            AppDatabase.IO.execute(() -> {
+                try {
+                    AppDatabase.getInstance(this).equipoDao().insertar(equipo);
+
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Equipo guardado", Toast.LENGTH_SHORT).show();
+                        finish();
+                    });
+                } catch (RuntimeException e) {
+                    runOnUiThread(() -> {
+                        v.setEnabled(true);
+                        Toast.makeText(this, "No se pudo guardar el equipo",
+                                Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
         });
 
         findViewById(R.id.btnVolverEquipo).setOnClickListener(v -> {

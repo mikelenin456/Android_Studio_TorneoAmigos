@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.udh.torneosamigoshito1.R;
 import com.udh.torneosamigoshito1.model.Equipo;
-import com.udh.torneosamigoshito1.model.EquiposEjemplo;
+import com.udh.torneosamigoshito1.model.AppDatabase;
 
 import java.util.ArrayList;
 
@@ -30,10 +30,6 @@ public class PartidoActivity extends AppCompatActivity {
 
         ArrayList<String> nombres = new ArrayList<>();
 
-        for (Equipo equipo : EquiposEjemplo.obtener()) {
-            nombres.add(equipo.getNombre());
-        }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -46,10 +42,32 @@ public class PartidoActivity extends AppCompatActivity {
 
         local.setAdapter(adapter);
         visita.setAdapter(adapter);
-        visita.setSelection(1);
+        AppDatabase.IO.execute(() -> {
+            try {
+                java.util.List<Equipo> equipos =
+                        AppDatabase.getInstance(this).equipoDao().listar();
+
+                runOnUiThread(() -> {
+                    for (Equipo equipo : equipos) {
+                        adapter.add(equipo.getNombre());
+                    }
+
+                    if (adapter.getCount() >= 2) {
+                        visita.setSelection(1);
+                    }
+                });
+            } catch (RuntimeException e) {
+                runOnUiThread(() -> Toast.makeText(this,
+                        "No se pudieron cargar los equipos", Toast.LENGTH_SHORT).show());
+            }
+        });
 
         findViewById(R.id.btnValidarPartido).setOnClickListener(v -> {
-
+            if (adapter.getCount() < 2) {
+                Toast.makeText(this, "Registra al menos dos equipos",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (cancha.getText().toString().trim().isEmpty()) {
                 cancha.setError("Completa la cancha");
                 cancha.requestFocus();
@@ -65,12 +83,12 @@ public class PartidoActivity extends AppCompatActivity {
             if (local.getSelectedItemPosition()
                     == visita.getSelectedItemPosition()) {
                 Toast.makeText(
-                        this,
-                        "Selecciona dos equipos diferentes",
+                        this, "Selecciona dos equipos diferentes",
                         Toast.LENGTH_SHORT
                 ).show();
                 return;
             }
+
             String resumen = "Local: " + local.getSelectedItem()
                     + "\nVisitante: " + visita.getSelectedItem()
                     + "\nCancha: " + cancha.getText().toString().trim()
