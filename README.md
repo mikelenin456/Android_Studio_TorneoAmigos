@@ -90,11 +90,5 @@ Para probarlo, registra un equipo, marca la confirmación y pulsa **Guardar equi
 
 ### Evidencias
 
-- [Formulario de registro de Amigos Michael](evidencias/capturas/capturas_hito3/12_formulario_amigos_michael.png)
-- [Equipos registrados en la app](evidencias/capturas/capturas_hito3/13_lista_equipos_registrados.png)
-- [Equipos disponibles en el formulario de partido](evidencias/capturas/capturas_hito3/14_equipos_registrados_en_partido.png)
-- [Gianca y Amigos Michael en la tabla equipos](evidencias/capturas/capturas_hito3/15_equipos_database_inspector.png)
+El registro y la consulta de equipos ya funcionan. Falta implementar la edición y eliminación de equipos con el guardado y la consulta de partidos.
 
-El registro y la consulta de equipos ya funcionan. Queda pendiente implementar la edición y eliminación de equipos, y el guardado y la consulta de partidos.
-
-[Plan de avance](PLAN_DE_AVANCE.docx) · [Bitácora de desarrollo](BITACORA.md)
