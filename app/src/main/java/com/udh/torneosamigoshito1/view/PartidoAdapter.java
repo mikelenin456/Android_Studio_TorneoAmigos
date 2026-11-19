@@ -14,8 +14,15 @@ public class PartidoAdapter extends RecyclerView.Adapter<PartidoAdapter.PartidoV
 
     private final List<String> resumenes;
 
-    public PartidoAdapter(List<String> resumenes) {
+    public interface AlTocarPartido {
+        void tocar(int posicion);
+    }
+
+    private final AlTocarPartido alTocarPartido;
+
+    public PartidoAdapter(List<String> resumenes, AlTocarPartido alTocarPartido) {
         this.resumenes = resumenes;
+        this.alTocarPartido = alTocarPartido;
     }
 
     @NonNull
@@ -29,6 +36,7 @@ public class PartidoAdapter extends RecyclerView.Adapter<PartidoAdapter.PartidoV
     @Override
     public void onBindViewHolder(@NonNull PartidoViewHolder holder, int position) {
         holder.texto.setText(resumenes.get(position));
+        holder.itemView.setOnClickListener(v -> alTocarPartido.tocar(position));
     }
 
     @Override

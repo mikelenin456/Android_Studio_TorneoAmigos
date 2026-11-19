@@ -104,3 +104,13 @@ Solucion:
 - Use el ID para actualizar el mismo equipo y volvi a consultar Room al regresar al detalle o a la lista.
 - Agregue una tabla en Room para guardar los partidos sin borrar los equipos que ya tenia registrados.
 - Quite las variables repetidas y conecte el formulario con ReglasPartido.
+
+## HITO 3 COMPLETO 
+
+### Resultados y jugadores
+
+Ahora puedo tocar un partido programado, ingresar los goles y guardar el resultado el registro de jugadores y el marcador y seguian en la lista despues de reiniciar la app.
+
+Desde el detalle de cada equipo tambien puedo registrar y consultar sus jugadores.
+
+Con estos cambios complete los primeros seis modulos, que suman el 70 % segun mi Plan de Avance.

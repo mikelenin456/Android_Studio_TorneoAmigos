@@ -18,6 +18,8 @@ public class PartidosProgramados {
 
     @NonNull
     public String fechaHora;
+    public Integer golesLocal;
+    public Integer golesVisitante;
 
     public PartidosProgramados(int localId, int visitanteId,
                                @NonNull String cancha, @NonNull String fechaHora) {

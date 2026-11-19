@@ -14,4 +14,8 @@ public interface PartidoAccesoDatos {
 
     @Query("SELECT * FROM partidos ORDER BY id DESC")
     List<PartidosProgramados> listar();
+
+    @Query("UPDATE partidos SET golesLocal = :golesLocal, "
+            + "golesVisitante = :golesVisitante WHERE id = :partidoId")
+    int guardarResultado(int partidoId, int golesLocal, int golesVisitante);
 }

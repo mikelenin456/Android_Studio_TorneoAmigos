@@ -55,7 +55,6 @@
         android:text="Editar equipo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDelegadoDetalle" />
-
     <Button
         android:id="@+id/btnEliminarEquipo"
         android:layout_width="wrap_content"
@@ -64,4 +63,21 @@
         android:text="Eliminar equipo"
         app:layout_constraintStart_toStartOf="@id/btnEditarEquipo"
         app:layout_constraintTop_toBottomOf="@id/btnEditarEquipo" />
+
+    <Button
+        android:id="@+id/btnAgregarJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Agregar jugador"
+        app:layout_constraintStart_toStartOf="@id/btnEliminarEquipo"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminarEquipo" />
+    <Button
+        android:id="@+id/btnVerJugadores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ver jugadores"
+        app:layout_constraintStart_toStartOf="@id/btnAgregarJugador"
+        app:layout_constraintTop_toBottomOf="@id/btnAgregarJugador" />
 </androidx.constraintlayout.widget.ConstraintLayout>

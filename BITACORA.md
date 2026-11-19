@@ -53,3 +53,12 @@ Solucion:
 - Use el ID para actualizar el mismo equipo y volvi a consultar Room al regresar al detalle o a la lista.
 - Agregue una tabla en Room para guardar los partidos sin borrar los equipos que ya tenia registrados.
 - Quite las variables repetidas y conecte el formulario con ReglasPartido.
+
+## Hito 3 Completo 
+
+Avance: Agregado una opcion para guardar el marcador desde la lista de partidos. Tambien puse dos botones en el detalle del equipo para agregar jugadores y ver quienes estan registrados.
+
+Dificultad: Al conectar el toque de cada partido, la lista quedo en blanco porque quite la linea que mostraba el texto de la fila ademas se tubo que agregar los goles y los jugadores a Room conservando los datos que ya habia guardado.
+
+
+Solucion: Volvi a poner la linea que muestra el texto de la fila y actualice la base de datos. Probe guardando el 2 - 1 de Gianca contra Legion. Cerre y volvi a abrir la app, y el marcador seguia ahi. Tambien revise en Database Inspector que Luis y Marko quedaron registrados en Gianca.

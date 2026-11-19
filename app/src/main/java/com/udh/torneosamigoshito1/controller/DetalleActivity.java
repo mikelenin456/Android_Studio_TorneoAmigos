@@ -17,6 +17,8 @@ import com.udh.torneosamigoshito1.model.Equipo;
 
 import android.view.View;
 import androidx.appcompat.app.AlertDialog;
+import android.widget.EditText;
+import com.udh.torneosamigoshito1.model.Jugador;
 
 public class DetalleActivity extends AppCompatActivity {
 
@@ -52,11 +54,16 @@ public class DetalleActivity extends AppCompatActivity {
                         .show()
         );
 
+        findViewById(R.id.btnAgregarJugador).setOnClickListener(v -> mostrarRegistroJugador());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        findViewById(R.id.btnVerJugadores).setOnClickListener(v -> mostrarJugadores());
+
+
     }
     @Override
     protected void onResume() {
@@ -119,6 +126,87 @@ public class DetalleActivity extends AppCompatActivity {
                     Toast.makeText(this, "No se pudo eliminar el equipo",
                             Toast.LENGTH_SHORT).show();
                 });
+            }
+        });
+    }
+    private void mostrarRegistroJugador() {
+        int equipoId = getIntent().getIntExtra("equipoId", -1);
+        EditText campoNombre = new EditText(this);
+        campoNombre.setHint("Nombre del jugador");
+        campoNombre.setSingleLine(true);
+
+        AlertDialog dialogo = new AlertDialog.Builder(this)
+                .setTitle("Agregar jugador")
+                .setView(campoNombre)
+                .setNegativeButton("Cancelar", null)
+                .setPositiveButton("Guardar", null)
+                .show();
+
+        dialogo.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(boton -> {
+            String nombreJugador = campoNombre.getText().toString().trim();
+            if (nombreJugador.isEmpty()) {
+                campoNombre.setError("Completa el nombre del jugador");
+                return;
+            }
+
+            boton.setEnabled(false);
+            AppDatabase.IO.execute(() -> {
+                try {
+                    AppDatabase db = AppDatabase.getInstance(this);
+                    if (db.equipoDao().buscarPorId(equipoId) == null) {
+                        runOnUiThread(() -> {
+                            dialogo.dismiss();
+                            Toast.makeText(this, "No se encontro el equipo",
+                                    Toast.LENGTH_SHORT).show();
+                            finish();
+                        });
+                        return;
+                    }
+
+                    db.jugadorDao().insertar(new Jugador(equipoId, nombreJugador));
+                    runOnUiThread(() -> {
+                        dialogo.dismiss();
+                        Toast.makeText(this, "Jugador guardado", Toast.LENGTH_SHORT).show();
+                    });
+                } catch (RuntimeException e) {
+                    runOnUiThread(() -> {
+                        boton.setEnabled(true);
+                        Toast.makeText(this, "No se pudo guardar el jugador",
+                                Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+        });
+    }
+    private void mostrarJugadores() {
+        int equipoId = getIntent().getIntExtra("equipoId", -1);
+
+        AppDatabase.IO.execute(() -> {
+            try {
+                java.util.List<Jugador> jugadores = AppDatabase.getInstance(this)
+                        .jugadorDao().listarPorEquipo(equipoId);
+
+                String[] nombres = new String[jugadores.size()];
+                for (int i = 0; i < jugadores.size(); i++) {
+                    nombres[i] = jugadores.get(i).nombre;
+                }
+
+                runOnUiThread(() -> {
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this)
+                            .setTitle("Jugadores del equipo")
+                            .setPositiveButton("Cerrar", null);
+
+                    if (nombres.length == 0) {
+                        dialogo.setMessage("Este equipo aun no tiene jugadores");
+                    } else {
+                        dialogo.setItems(nombres, null);
+                    }
+
+                    dialogo.show();
+                });
+            } catch (RuntimeException e) {
+                runOnUiThread(() -> Toast.makeText(this,
+                        "No se pudieron cargar los jugadores", Toast.LENGTH_SHORT).show());
             }
         });
     }
