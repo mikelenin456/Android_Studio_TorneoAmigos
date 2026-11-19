@@ -88,7 +88,19 @@ Agregué Room al proyecto para guardar los equipos que se registran desde el for
 
 Para probarlo, registra un equipo, marca la confirmación y pulsa **Guardar equipo**. Abre **Ver equipos registrados** para buscarlo. Luego cierra la app, vuelve a abrirla y entra otra vez a la lista para comprobar que el equipo sigue ahí.
 
-### Evidencias
+## HITO 3 AVANCE
 
-El registro y la consulta de equipos ya funcionan. Falta implementar la edición y eliminación de equipos con el guardado y la consulta de partidos.
+Avance:
+- Complete el registro, la consulta, la edicion y la eliminacion de equipos con Room.
+- Agregue el guardado de partidos y una pantalla para ver los partidos programados.
+- Separe 2 reglas del formulario en la clase ReglasPartido porque tiene que haber al menos 2 equipos registrados y el local y visitantes tienen q ser distintos
 
+Dificultad:
+- Al guardar una edicion, el detalle del equipo seguia mostrando los datos anteriores.
+- Para guardar los partidos tenia que agregar una tabla sin perder los equipos que ya habia registrado.
+- Al conectar las reglas con el formulario, deje repetidas las variables del local y el visitante.
+
+Solucion:
+- Use el ID para actualizar el mismo equipo y volvi a consultar Room al regresar al detalle o a la lista.
+- Agregue una tabla en Room para guardar los partidos sin borrar los equipos que ya tenia registrados.
+- Quite las variables repetidas y conecte el formulario con ReglasPartido.
