@@ -35,4 +35,21 @@ Al conectar el formulario, cambié por error el ID del botón en el XML y Java d
 
 El formulario ya confirmaba el guardado, pero la lista y el formulario de partido seguían mostrando los equipos de ejemplo. Cambié ambas pantallas para que consulten los equipos guardados en Room. La consulta se ejecuta en segundo plano y luego se actualizan la lista y los desplegables.
 
-Probé el registro con **Amigos Michael**. Lo vi en la lista de la app y en el formulario de partido junto a **Gianca**. También abrí Database Inspector y comprobé que los dos estaban en la tabla `equipos`. [Lista en la app](evidencias/capturas/capturas_hito3/13_lista_equipos_registrados.png) · [Tabla en Database Inspector](evidencias/capturas/capturas_hito3/15_equipos_database_inspector.png)
+Probé el registro con **Amigos Michael**. Lo vi en la lista de la app y en el formulario de partido junto a **Gianca**. Tambien abri Database Inspector y comprobe que los dos estaban en la tabla `equipos`. [Lista en la app](evidencias/capturas/capturas_hito3/13_lista_equipos_registrados.png) · [Tabla en Database Inspector](evidencias/capturas/capturas_hito3/15_equipos_database_inspector.png)
+
+## HITO 3 AVANCE 
+
+Avance:
+- Complete el registro, la consulta, la edicion y la eliminacion de equipos con Room.
+- Agregue el guardado de partidos y una pantalla para ver los partidos programados.
+- Separe 2 reglas del formulario en la clase ReglasPartido porque tiene que haber al menos 2 equipos registrados y el local y visitantes tienen q ser distintos 
+
+Dificultad:
+- Al guardar una edicion, el detalle del equipo seguia mostrando los datos anteriores.
+- Para guardar los partidos tenia que agregar una tabla sin perder los equipos que ya habia registrado.
+- Al conectar las reglas con el formulario deje repetidas las variables del local y del visitante ya que estas daban errores en el Android Studio
+
+Solucion:
+- Use el ID para actualizar el mismo equipo y volvi a consultar Room al regresar al detalle o a la lista.
+- Agregue una tabla en Room para guardar los partidos sin borrar los equipos que ya tenia registrados.
+- Quite las variables repetidas y conecte el formulario con ReglasPartido.

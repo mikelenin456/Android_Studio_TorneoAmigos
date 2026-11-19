@@ -13,8 +13,9 @@ import com.udh.torneosamigoshito1.model.Equipo;
 import com.udh.torneosamigoshito1.model.AppDatabase;
 
 import java.util.ArrayList;
-
 import androidx.appcompat.app.AlertDialog;
+import com.udh.torneosamigoshito1.model.PartidosProgramados;
+import com.udh.torneosamigoshito1.model.ReglasPartido;
 
 public class PartidoActivity extends AppCompatActivity {
 
@@ -36,6 +37,8 @@ public class PartidoActivity extends AppCompatActivity {
                 nombres
         );
 
+        ArrayList<Equipo> equiposDisponibles = new ArrayList<>();
+
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
         );
@@ -48,6 +51,7 @@ public class PartidoActivity extends AppCompatActivity {
                         AppDatabase.getInstance(this).equipoDao().listar();
 
                 runOnUiThread(() -> {
+                    equiposDisponibles.addAll(equipos);
                     for (Equipo equipo : equipos) {
                         adapter.add(equipo.getNombre());
                     }
@@ -63,7 +67,7 @@ public class PartidoActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btnValidarPartido).setOnClickListener(v -> {
-            if (adapter.getCount() < 2) {
+            if (!ReglasPartido.hayEquiposSuficientes(equiposDisponibles.size())) {
                 Toast.makeText(this, "Registra al menos dos equipos",
                         Toast.LENGTH_SHORT).show();
                 return;
@@ -79,13 +83,12 @@ public class PartidoActivity extends AppCompatActivity {
                 fecha.requestFocus();
                 return;
             }
+            Equipo equipoLocal = equiposDisponibles.get(local.getSelectedItemPosition());
+            Equipo equipoVisitante = equiposDisponibles.get(visita.getSelectedItemPosition());
 
-            if (local.getSelectedItemPosition()
-                    == visita.getSelectedItemPosition()) {
-                Toast.makeText(
-                        this, "Selecciona dos equipos diferentes",
-                        Toast.LENGTH_SHORT
-                ).show();
+            if (!ReglasPartido.sonEquiposDistintos(equipoLocal.id, equipoVisitante.id)) {
+
+                Toast.makeText(this, "Selecciona dos equipos diferentes", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -97,7 +100,32 @@ public class PartidoActivity extends AppCompatActivity {
             new AlertDialog.Builder(PartidoActivity.this)
                     .setTitle("Resumen del partido")
                     .setMessage(resumen)
-                    .setPositiveButton("Aceptar", null)
+                    .setPositiveButton("Guardar partido", (dialogo, opcion) -> {
+
+                        PartidosProgramados partido = new PartidosProgramados(
+                                equipoLocal.id,
+                                equipoVisitante.id,
+                                cancha.getText().toString().trim(),
+                                fecha.getText().toString().trim()
+                        );
+
+                        v.setEnabled(false);
+                        AppDatabase.IO.execute(() -> {
+                            try {
+                                AppDatabase.getInstance(this).partidoDao().insertar(partido);
+                                runOnUiThread(() -> {
+                                    Toast.makeText(this, "Partido guardado", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                });
+                            } catch (RuntimeException e) {
+                                runOnUiThread(() -> {
+                                    v.setEnabled(true);
+                                    Toast.makeText(this, "No se pudo guardar el partido",
+                                            Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        });
+                    })
                     .show();
         });
 

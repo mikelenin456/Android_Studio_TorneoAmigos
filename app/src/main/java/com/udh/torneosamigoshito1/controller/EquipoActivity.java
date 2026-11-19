@@ -39,6 +39,18 @@ public class EquipoActivity extends AppCompatActivity {
 
         categoria.setAdapter(adapter);
 
+        int equipoId = getIntent().getIntExtra("equipoId", -1);
+
+        if (equipoId > 0) {
+            nombre.setText(getIntent().getStringExtra("nombre"));
+            delegado.setText(getIntent().getStringExtra("delegado"));
+
+            int posicion = adapter.getPosition(getIntent().getStringExtra("categoria"));
+            if (posicion >= 0) {
+                categoria.setSelection(posicion);
+            }
+        }
+
         findViewById(R.id.btnValidarEquipo).setOnClickListener(v -> {
 
             if (nombre.getText().toString().trim().isEmpty()) {
@@ -71,7 +83,13 @@ public class EquipoActivity extends AppCompatActivity {
 
             AppDatabase.IO.execute(() -> {
                 try {
-                    AppDatabase.getInstance(this).equipoDao().insertar(equipo);
+                    AppDatabase.getInstance(this).equipoDao();
+                    if (equipoId > 0) {
+                        equipo.id = equipoId;
+                        AppDatabase.getInstance(this).equipoDao().actualizar(equipo);
+                    } else {
+                        AppDatabase.getInstance(this).equipoDao().insertar(equipo);
+                    }
 
                     runOnUiThread(() -> {
                         Toast.makeText(this, "Equipo guardado", Toast.LENGTH_SHORT).show();

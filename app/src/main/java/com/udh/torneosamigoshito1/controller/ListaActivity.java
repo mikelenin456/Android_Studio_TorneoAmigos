@@ -31,15 +31,27 @@ public class ListaActivity extends AppCompatActivity {
 
         RecyclerView lista = findViewById(R.id.rvEquipos);
         lista.setLayoutManager(new LinearLayoutManager(this));
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        RecyclerView lista = findViewById(R.id.rvEquipos);
         AppDatabase.IO.execute(() -> {
             try {
                 ArrayList<Equipo> equipos = new ArrayList<>(
                         AppDatabase.getInstance(this).equipoDao().listar()
                 );
-
                 runOnUiThread(() -> {
                     lista.setAdapter(new EquipoAdapter(equipos, equipo -> {
                         Intent intento = new Intent(this, DetalleActivity.class);
+                        intento.putExtra("equipoId", equipo.id);
                         intento.putExtra("nombre", equipo.getNombre());
                         intento.putExtra("categoria", equipo.getCategoria());
                         intento.putExtra("delegado", equipo.getDelegado());
@@ -50,12 +62,6 @@ public class ListaActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(this,
                         "No se pudieron cargar los equipos", Toast.LENGTH_SHORT).show());
             }
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
         });
     }
 }

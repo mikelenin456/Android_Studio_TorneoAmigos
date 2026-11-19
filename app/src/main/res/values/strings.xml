@@ -19,4 +19,5 @@
     <string name="fecha_hora_partido">Fecha y hora: 10/11/2026 15:00</string>
     <string name="partido_amistoso">Partido amistoso</string>
     <string name="guardar_equipo">Guardar equipo</string>
+    <string name="btn_lista_partidos">Ver partidos programados</string>
 </resources>

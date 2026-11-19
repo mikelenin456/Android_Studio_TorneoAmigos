@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intento);
         });
 
+        findViewById(R.id.btnListaPartidos).setOnClickListener(v -> {
+            Intent intento = new Intent(MainActivity.this, ListaPartidosActivity.class);
+            startActivity(intento);
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

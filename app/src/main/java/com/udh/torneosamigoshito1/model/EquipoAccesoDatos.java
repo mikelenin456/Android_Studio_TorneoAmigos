@@ -5,6 +5,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.List;
+import androidx.room.Update;
+import androidx.room.Delete;
 
 @Dao
 public interface EquipoAccesoDatos {
@@ -14,4 +16,11 @@ public interface EquipoAccesoDatos {
 
     @Query("SELECT * FROM equipos ORDER BY nombre")
     List<Equipo> listar();
+
+    @Update
+    void actualizar(Equipo equipo);
+    @Query("SELECT * FROM equipos WHERE id = :equipoId")
+    Equipo buscarPorId(int equipoId);
+    @Delete
+    int eliminar(Equipo equipo);
 }
